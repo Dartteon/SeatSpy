@@ -10,7 +10,7 @@ function saveData (data) {
     seatData.saveTime = new Date();
     seatData.save((err, newEntry) => {
         if (err) { sendMessageToUser(errorMessage) }
-        else { console.log("Save successful!") }
+        // else { console.log("Save successful!") }
     });
 }
 

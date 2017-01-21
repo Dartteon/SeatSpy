@@ -1,13 +1,14 @@
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var axios = require('axios');
 var ReactHighcharts = require ('react-highcharts');
 
 var App = React.createClass({
 	getInitialState: function() {
     return {
-      occupancyChart: {},
+      occupancyChart: null,
     }
   },
 
@@ -44,4 +45,4 @@ var App = React.createClass({
   }
 });
 
-React.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('app'));
