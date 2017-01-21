@@ -1,0 +1,12 @@
+{
+  "development": {
+      "database":"mongodb://localhost/seats",
+      "port": 8143,
+      "secretKey": "oddleTracker!@#$%^&*()_+="
+   },
+   "production": {
+      "database":"mongodb://dartteon:mongolab@ds117909.mlab.com:17909/heroku_nzd07xdn",
+      "port": 8143,
+      "secretKey": "oddleTracker!@#$%^&*()_+="
+   }
+}

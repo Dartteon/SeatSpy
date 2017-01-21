@@ -1,3 +1,4 @@
+var dbManager = require('./dbManager.js');
 
 var clients = [];
 var seats = [true, true, true, true, 
@@ -18,15 +19,15 @@ function connectNewClient (clientInfo) {
     });
     
     //Build data
-    var numEmpty = 0;
+    var numEmptySeats = 0;
     for (var j = 0; j < seats.length; j++) {
-        if (seats[j] == true) numEmpty++;
+        if (seats[j] == true) numEmptySeats++;
     }
-    var numFull = seats.length - numEmpty;
+    var numFullSeats = seats.length - numEmptySeats;
     var data = {
         seats: seats,
-        numEmpty: numEmpty,
-        numFull: numFull
+        numEmptySeats: numEmptySeats,
+        numFullSeats: numFullSeats
     }
 
     //Send data
@@ -35,18 +36,18 @@ function connectNewClient (clientInfo) {
 
 function updateAllClients() {
     //Build data
-    var numEmpty = 0;
+    var numEmptySeats = 0;
     for (var j = 0; j < seats.length; j++) {
         // console.log("Index " + j + " " + seats[j] + " bool - " + (!!seats[j]));
-        if (!!seats[j]) numEmpty++;
+        if (!!seats[j]) numEmptySeats++;
     }
-    var numFull = seats.length - numEmpty;
-    console.log("Current State --- NumEmpty[" + numEmpty + "] --- NumFull[" + numFull + "] --- Seats[" + seats + "]");
+    var numFullSeats = seats.length - numEmptySeats;
+    console.log("Current State --- numEmptySeats[" + numEmptySeats + "] --- numFullSeats[" + numFullSeats + "] --- Seats[" + seats + "]");
 
     var data = {
         seats: seats,
-        numEmpty: numEmpty,
-        numFull: numFull
+        numEmptySeats: numEmptySeats,
+        numFullSeats: numFullSeats
     }
     
     //Send data
@@ -70,9 +71,28 @@ function updateSeatVancancy (seatIndex, isEmpty) {
     updateAllClients();
 }
 
+function saveSeatData() {
+    //Build data
+    var numEmptySeats = 0;
+    for (var j = 0; j < seats.length; j++) {
+        // console.log("Index " + j + " " + seats[j] + " bool - " + (!!seats[j]));
+        if (!!seats[j]) numEmptySeats++;
+    }
+    var numFullSeats = seats.length - numEmptySeats;
+    console.log("Current State --- numEmptySeats[" + numEmptySeats + "] --- numFullSeats[" + numFullSeats + "] --- Seats[" + seats + "]");
+
+    var data = {
+        seats: seats,
+        numEmptySeats: numEmptySeats,
+        numFullSeats: numFullSeats
+    }
+    dbManager.saveData(data);
+}
+
 module.exports = {
     initialize: initialize,
     updateAllClients: updateAllClients,
     connectNewClient: connectNewClient,
-    updateSeatVancancy: updateSeatVancancy
+    updateSeatVancancy: updateSeatVancancy,
+    saveSeatData: saveSeatData
 }
