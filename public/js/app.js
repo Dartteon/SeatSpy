@@ -54,42 +54,65 @@ var App = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'area-name' },
-					'Prototype #1'
+					'Koufu'
 				)
 			),
 			React.createElement(
 				'div',
-				{ className: 'seats-block' },
+				{ className: 'seats-block-container' },
 				React.createElement(
 					'div',
-					{ className: 'empty-seats' },
+					{ className: 'seats-block empty-seats-color' },
 					React.createElement(
-						'p',
-						{ className: 'empty-seats-number' },
-						'8'
+						'div',
+						{ className: 'seats-number' },
+						this.state.numEmpty
 					),
 					React.createElement(
-						'p',
-						{ className: 'empty-seats-label' },
+						'div',
+						{ className: 'seats-label' },
 						'EMPTY'
 					)
 				),
+				React.createElement('span', { className: 'space-filler' }),
 				React.createElement(
 					'div',
-					{ className: 'occupied-seats' },
+					{ className: 'seats-block occupied-seats-color' },
 					React.createElement(
-						'p',
-						{ className: 'occupied-seats-number' },
-						'0'
+						'div',
+						{ className: 'seats-number' },
+						this.state.numFull
 					),
 					React.createElement(
-						'p',
-						{ className: 'occupied-seats-label' },
+						'div',
+						{ className: 'seats-label' },
 						'OCCUPIED'
 					)
 				)
 			),
-			React.createElement('div', { className: 'visualised-seats' })
+			React.createElement(
+				'div',
+				{ className: 'visualised-seats-container' },
+				React.createElement(
+					'div',
+					{ className: 'visualised-seats-block' },
+					React.createElement('div', { className: 'seat top left' }),
+					React.createElement('div', { className: 'seat top right' }),
+					React.createElement('div', { className: 'table' }),
+					React.createElement('div', { className: 'seat bottom left' }),
+					React.createElement('div', { className: 'seat bottom right' })
+				),
+				React.createElement('span', { className: 'space-filler' }),
+				React.createElement(
+					'div',
+					{ className: 'visualised-seats-block' },
+					React.createElement('div', { className: 'seat top left' }),
+					React.createElement('div', { className: 'seat top right' }),
+					React.createElement('div', { className: 'table' }),
+					React.createElement('div', { className: 'seat bottom left' }),
+					React.createElement('div', { className: 'seat bottom right' })
+				)
+			)
 		);
 	}
 });
