@@ -1,6 +1,7 @@
 html {
   height: 100%;
   width: 100%;
+  background-color: #f9f9f9;
 }
 
 #app {
@@ -17,15 +18,85 @@ html {
 
 .area-name-block {
   height: 10vh;
-  background-color: #ff0000;
+  background-color: #f1c40f;
   position: relative;
 }
 
 .area-name {
   margin: 0;
+  font-size: 4vh;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 36px;
+}
+
+.seats-block-container {
+  height: 45vh;
+  position: relative;
+  text-align: center;
+  /*border-bottom: 2px solid #000;*/
+}
+
+.seats-block {
+  width: 20vh;
+  height: 30vh;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+}
+
+.empty-seats-color {
+  background-color: #2ecc71;
+}
+
+.occupied-seats-color {
+  background-color: #c0392b;
+}
+
+.space-filler {
+  padding: 10px;
+}
+
+.seats-number {
+  color: #ecf0f1;
+  font-size: 10vh;
+  position: absolute;
+  top: 5vh;
+  left: 0;
+  right: 0;
+}
+
+.seats-label {
+  color: #ecf0f1;
+  font-size: 2vh;
+  position: absolute;
+  bottom: 5vh;
+  left: 0;
+  right: 0;
+}
+
+.visualised-seats-container {
+  height: 40vh;
+  position: relative;
+  text-align: center;
+}
+
+.visualised-seats-block {
+  width: 40vh;
+  height: 30vh;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  border: 2px solid #3498db;
+}
+
+.table {
+  width: 30vh;
+  height: 20vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #9b59b6;
 }
