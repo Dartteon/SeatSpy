@@ -114,7 +114,6 @@ function getSeatDataHighChart(request, response, next) {
             var highChart = generateHighChartJson(graphs, result);
             console.log(JSON.stringify(highChart));
             // next(highChart);
-        saveData();
             response.end(JSON.stringify(highChart));
         });
 }
