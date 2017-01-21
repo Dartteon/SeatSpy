@@ -8,6 +8,7 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "babelify": "^6.1.3",
     "body-parser": "1.8",
     "browserify": "^10.2.6",

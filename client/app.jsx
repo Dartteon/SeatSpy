@@ -6,7 +6,7 @@ var socket = io.connect();
 var App = React.createClass({
 	getInitialState() {
 		return {
-			seats: ["occupied-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color"],
+			seats: ["empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color"],
 			numEmpty: 0,
 			numFull: 0,
 		};
@@ -36,7 +36,6 @@ var App = React.createClass({
 
 	render() {
 		console.log('myState', this.state);
-		// const seatColors = ["occupied-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color"];
 		const seatColors = this.state.seats;
 		return (
 			<div className="app-container">

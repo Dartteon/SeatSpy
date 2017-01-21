@@ -1,87 +1,38 @@
 'use strict';
 
 var React = require('react');
-var socket = io.connect();
-
-var MerchantStatus = React.createClass({
-	sendDecreaseTimeRequestToBackend() {
-		socket.emit('changetimeperticket:decrement', null);
-	},
-	sendIncreaseTimeRequestToBackend() {
-		socket.emit('changetimeperticket:increment', null);
-	},
-	sendDequeueRequestToBackend() {
-		socket.emit('dequeue:nextticket', null);
-	},
-	render() {
-		return (
-			<div>
-			{
-				this.props.merchantData == null ?
-					<div className="loading"></div>
-				: <div className="merchant">
-						<div className="merchant-status">
-							<div className="merchant-status-text">
-								Total in Queue:
-								<div className="merchant-status-number">
-									{this.props.merchantData.total_cust_in_queue}
-								</div>
-							</div>
-							<div className="merchant-status-text">
-								Estimated Waiting Time (Mins):
-								<div className="merchant-status-number">
-									{this.props.merchantData.total_est_waiting_time}
-								</div>
-							</div>
-						</div>
-						<div className="merchant-controls">
-							<div className="merchant-controls-box"></div>
-							<div className="merchant-controls-time-header">Time Per Ticket</div>
-							<div className="merchant-controls-time">
-								<button className="merchant-controls-arrow" onClick={this.sendDecreaseTimeRequestToBackend}>&#9664;</button>
-								<div className="merchant-controls-arrow-text">{this.props.merchantData.time_per_ticket}</div>
-								<button className="merchant-controls-arrow" onClick={this.sendIncreaseTimeRequestToBackend}>&#9654;</button>
-							</div>
-							<div className="merchant-controls-dequeue">
-								<div className="merchant-controls-dequeue-text">{this.props.merchantData.next_ticket_num}</div>
-								<button className="merchant-controls-dequeue-button" onClick={this.sendDequeueRequestToBackend}>Pop Next Ticket</button>
-							</div>
-						</div>
-					</div>
-			}
-			</div>
-		);
-	}
-});
+var axios = require('axios');
 
 var App = React.createClass({
-	getInitialState() {
-		return {
-			merchantData: null
-		};
-	},
+	getInitialState: function() {
+    return {
+      jobs: []
+    }
+  },
 
-	componentDidMount() {
-		socket.on('send:merchantdata', this._receiveMerchantData);
-		this.sendMerchantIdToBackend();
-	},
+  componentDidMount: function() {
+    var _this = this;
+    this.serverRequest =
+      axios
+        .get("http://codepen.io/jobs.json")
+        .then(function(result) {
+          _this.setState({
+            jobs: result.data.jobs
+          });
+        })
+  },
 
-	_receiveMerchantData(data) {
-		var merchantData = data;
-		this.setState({merchantData: merchantData});
-	},
+  componentWillUnmount: function() {
+    this.serverRequest.abort();
+  },
 
-	sendMerchantIdToBackend() {
-		socket.emit('receive:merchantid', null);
-	},
-
-	render() {
-		return (
-			<MerchantStatus
-				merchantData={this.state.merchantData}
-			/>
-		);
-	}
+  render: function() {
+    return (
+      <div>
+        <div className="loading"></div>
+      </div>
+    )
+  }
 });
 
 React.render(<App/>, document.getElementById('app'));
