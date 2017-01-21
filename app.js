@@ -25,7 +25,9 @@ app.get('/update-solo-seat', function(req, res) {
   seatManager.updateSeatVancancy(seatIndex, isEmpty);
 });
 
-app.use(redirectUnmatched);
+const mainRoutes = require('./routes/mainRoutes.js');
+app.use(mainRoutes);
+// app.use(redirectUnmatched);
 function redirectUnmatched(req, res) {
   //Redirect all requests (except sensor HTTP requests) to /public
   res.redirect("/public");
@@ -45,6 +47,7 @@ io.sockets.on('connection', socket);
 
 io.sockets.on('connect', function (client) {
 });
+
 
 /* Start server */
 server.listen(app.get('port'), function () {

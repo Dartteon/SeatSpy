@@ -15,6 +15,26 @@ function saveData (data) {
     });
 }
 
+function getData (startDateTime, endDateTime, next) {
+        SeatData.find({
+            saveTime: {
+                $gte: startDateTime,
+                $lt: endDateTime
+            }
+        },
+
+        function (err, result) {
+            if (err) {
+                console.log ("Error: " + err);
+                return;
+            }
+            next(result);
+        }
+    
+    );
+}
+
 module.exports = {
-    saveData: saveData
+    saveData: saveData,
+    getData: getData
 }

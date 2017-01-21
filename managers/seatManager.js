@@ -1,4 +1,5 @@
 var dbManager = require('./dbManager.js');
+const router = require('express').Router();
 
 var clients = [];
 var seats = [true, true, true, true, 
@@ -25,7 +26,7 @@ function connectNewClient (clientInfo) {
     }
     var numFullSeats = seats.length - numEmptySeats;
     var data = {
-        seats: seats,
+        seats: buildSeatColorArray(),
         numEmptySeats: numEmptySeats,
         numFullSeats: numFullSeats
     }
@@ -45,7 +46,7 @@ function updateAllClients() {
     console.log("Current State --- numEmptySeats[" + numEmptySeats + "] --- numFullSeats[" + numFullSeats + "] --- Seats[" + seats + "]");
 
     var data = {
-        seats: seats,
+        seats: buildSeatColorArray(),
         numEmptySeats: numEmptySeats,
         numFullSeats: numFullSeats
     }
@@ -54,6 +55,16 @@ function updateAllClients() {
     for (var i = 0; i < clients.length; i++) {
         clients[i].emit('send:data', data);
     }
+}
+
+function buildSeatColorArray() {
+    //Very bad design, I know
+    colors = [];
+    for (var i = 0; i < seats.length; i++) {
+        if (!!seats[j]) colors.push("empty-seats-color");
+        else colors.push("occupied-seats-color");
+    }
+    return colors;
 }
 
 function updateSeatVancancy (seatIndex, isEmpty) {
@@ -89,10 +100,68 @@ function saveSeatData() {
     dbManager.saveData(data);
 }
 
+function getSeatDataHighChart(request, response, next) {
+    var startDateTime = request.query["startDateTime"];
+    var endDateTime = request.query["endDateTime"];
+    dbManager.getData(startDateTime, endDateTime,
+        function (result) {
+            var graphs = generateGraphs(result);
+            var highChart = generateHighChartJson(graphs, result);
+            // next(highChart);
+            response.end(JSON.stringify(highChart));
+        });
+}
+
+function generateGraphs(data) {
+    var numFullArray = [];
+    var numEmptyArray = [];
+    var rateArray = [];
+
+    for (var i = 0; i < data.length; i++) {
+        var numFull = data[i].numFullSeats;
+        var numEmpty = data[i].numEmptySeats;
+        var ratio = 100 * numFull / (numFull + numEmpty);
+        numFullArray.push(numFull);
+        numEmptyArray.push(numEmpty);
+        rateArray.push(ratio);
+    }
+
+    var graphs = [];
+    graphs.push({"name": "Occupied Seats", "data": numFullArray, type: 'spline'});
+    graphs.push({"name": "Empty Seats", "data": numEmptyArray, type: 'spline'});
+    graphs.push({"name": "% Seats Occupied", "data": rateArray, type: 'spline'});
+}
+function generateHighChartJson(graphs, data) {
+    //Construct highchart JSON for return
+    var highChartJson = {};
+    highChartJson.title = { "text": "Seat Data", y: 25, x: 0 };
+    highChartJson.subtitle = { "text": "", y: 45};
+    highChartJson.xAxis = { "categories": "Time" };
+    highChartJson.yAxis = {
+        title: {
+            text: "Number"
+        },
+        plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+        }]
+    }
+    highChartJson.legend = {
+        layout: 'horizontal',
+        align: 'center',
+        verticalAlign: 'bottom',
+        borderWidth: 0
+    }
+    highChartJson.series = graphs;
+    return highChartJson;
+}
+
 module.exports = {
     initialize: initialize,
     updateAllClients: updateAllClients,
     connectNewClient: connectNewClient,
     updateSeatVancancy: updateSeatVancancy,
-    saveSeatData: saveSeatData
+    saveSeatData: saveSeatData,
+    getSeatDataHighChart: getSeatDataHighChart
 }
