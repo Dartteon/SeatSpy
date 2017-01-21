@@ -6,7 +6,7 @@ var socket = io.connect();
 var App = React.createClass({
 	getInitialState() {
 		return {
-			seats: null,
+			seats: ["occupied-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color"],
 			numEmpty: 0,
 			numFull: 0,
 		};

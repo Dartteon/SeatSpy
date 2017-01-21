@@ -27,8 +27,8 @@ function connectNewClient (clientInfo) {
     var numFullSeats = seats.length - numEmptySeats;
     var data = {
         seats: buildSeatColorArray(),
-        numEmptySeats: numEmptySeats,
-        numFullSeats: numFullSeats
+        numEmpty: numEmptySeats,
+        numFull: numFullSeats
     }
 
     //Send data
@@ -47,8 +47,8 @@ function updateAllClients() {
 
     var data = {
         seats: buildSeatColorArray(),
-        numEmptySeats: numEmptySeats,
-        numFullSeats: numFullSeats
+        numEmpty: numEmptySeats,
+        numFull: numFullSeats
     }
     
     //Send data
@@ -61,7 +61,7 @@ function buildSeatColorArray() {
     //Very bad design, I know
     colors = [];
     for (var i = 0; i < seats.length; i++) {
-        if (!!seats[j]) colors.push("empty-seats-color");
+        if (!!seats[i]) colors.push("empty-seats-color");
         else colors.push("occupied-seats-color");
     }
     return colors;
@@ -93,9 +93,9 @@ function saveSeatData() {
     console.log("Current State --- numEmptySeats[" + numEmptySeats + "] --- numFullSeats[" + numFullSeats + "] --- Seats[" + seats + "]");
 
     var data = {
-        seats: seats,
-        numEmptySeats: numEmptySeats,
-        numFullSeats: numFullSeats
+        seats: buildSeatColorArray(),
+        numEmpty: numEmptySeats,
+        numFull: numFullSeats
     }
     dbManager.saveData(data);
 }

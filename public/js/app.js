@@ -9,7 +9,7 @@ var App = React.createClass({
 
 	getInitialState: function getInitialState() {
 		return {
-			seats: null,
+			seats: ["occupied-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color"],
 			numEmpty: 0,
 			numFull: 0
 		};
@@ -45,6 +45,8 @@ var App = React.createClass({
 
 	render: function render() {
 		console.log('myState', this.state);
+		// const seatColors = ["occupied-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color"];
+		var seatColors = this.state.seats;
 		return React.createElement(
 			'div',
 			{ className: 'app-container' },
@@ -96,21 +98,21 @@ var App = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'visualised-seats-block' },
-					React.createElement('div', { className: 'seat top left' }),
-					React.createElement('div', { className: 'seat top right' }),
+					React.createElement('div', { className: 'seat top left ' + seatColors[0] }),
+					React.createElement('div', { className: 'seat top right ' + seatColors[1] }),
 					React.createElement('div', { className: 'table' }),
-					React.createElement('div', { className: 'seat bottom left' }),
-					React.createElement('div', { className: 'seat bottom right' })
+					React.createElement('div', { className: 'seat bottom left ' + seatColors[2] }),
+					React.createElement('div', { className: 'seat bottom right ' + seatColors[3] })
 				),
 				React.createElement('span', { className: 'space-filler' }),
 				React.createElement(
 					'div',
 					{ className: 'visualised-seats-block' },
-					React.createElement('div', { className: 'seat top left' }),
-					React.createElement('div', { className: 'seat top right' }),
+					React.createElement('div', { className: 'seat top left ' + seatColors[4] }),
+					React.createElement('div', { className: 'seat top right ' + seatColors[5] }),
 					React.createElement('div', { className: 'table' }),
-					React.createElement('div', { className: 'seat bottom left' }),
-					React.createElement('div', { className: 'seat bottom right' })
+					React.createElement('div', { className: 'seat bottom left ' + seatColors[6] }),
+					React.createElement('div', { className: 'seat bottom right ' + seatColors[7] })
 				)
 			)
 		);
