@@ -94,8 +94,8 @@ function saveSeatData() {
 
     var data = {
         seats: buildSeatColorArray(),
-        numEmpty: numEmptySeats,
-        numFull: numFullSeats
+        numEmptySeats: numEmptySeats,
+        numFullSeats: numFullSeats
     }
     dbManager.saveData(data);
 }
@@ -103,9 +103,14 @@ function saveSeatData() {
 function getSeatDataHighChart(request, response, next) {
     var startDateTime = request.query["startDateTime"];
     var endDateTime = request.query["endDateTime"];
+    endDateTime = new Date();
+    startDateTime = new Date();
+    startDateTime.setDate(startDateTime.getDate()-1);
+    
     dbManager.getData(startDateTime, endDateTime,
         function (result) {
             var graphs = generateGraphs(result);
+            // console.log(JSON.stringify(result));
             var highChart = generateHighChartJson(graphs, result);
             // next(highChart);
             response.end(JSON.stringify(highChart));
@@ -130,6 +135,7 @@ function generateGraphs(data) {
     graphs.push({"name": "Occupied Seats", "data": numFullArray, type: 'spline'});
     graphs.push({"name": "Empty Seats", "data": numEmptyArray, type: 'spline'});
     graphs.push({"name": "% Seats Occupied", "data": rateArray, type: 'spline'});
+    return graphs;
 }
 function generateHighChartJson(graphs, data) {
     //Construct highchart JSON for return

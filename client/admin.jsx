@@ -6,7 +6,7 @@ var axios = require('axios');
 var App = React.createClass({
 	getInitialState: function() {
     return {
-      jobs: []
+      jobs: {}
     }
   },
 
@@ -14,10 +14,10 @@ var App = React.createClass({
     var _this = this;
     this.serverRequest =
       axios
-        .get("http://codepen.io/jobs.json")
+        .get("/seat-data-highchart")
         .then(function(result) {
           _this.setState({
-            jobs: result.data.jobs
+            jobs: result.data
           });
         })
   },
@@ -27,6 +27,7 @@ var App = React.createClass({
   },
 
   render: function() {
+    console.log(this.state.jobs);
     return (
       <div>
         <div className="loading"></div>

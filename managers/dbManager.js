@@ -8,7 +8,6 @@ function saveData (data) {
     seatData.numEmptySeats = data.numEmptySeats;
     seatData.numFullSeats = data.numFullSeats;
     seatData.saveTime = new Date();
-    console.log(JSON.stringify(seatData));
     seatData.save((err, newEntry) => {
         if (err) { sendMessageToUser(errorMessage) }
         else { console.log("Save successful!") }

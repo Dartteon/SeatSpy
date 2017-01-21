@@ -27,7 +27,7 @@ app.get('/update-solo-seat', function(req, res) {
 
 const mainRoutes = require('./routes/mainRoutes.js');
 app.use(mainRoutes);
-// app.use(redirectUnmatched);
+app.use(redirectUnmatched);
 function redirectUnmatched(req, res) {
   //Redirect all requests (except sensor HTTP requests) to /public
   res.redirect("/public");
