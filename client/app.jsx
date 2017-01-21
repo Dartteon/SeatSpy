@@ -36,6 +36,8 @@ var App = React.createClass({
 
 	render() {
 		console.log('myState', this.state);
+		// const seatColors = ["occupied-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color", "empty-seats-color"];
+		const seatColors = this.state.seats;
 		return (
 			<div className="app-container">
 				<div className="area-name-block">
@@ -54,19 +56,19 @@ var App = React.createClass({
 				</div>
 				<div className="visualised-seats-container">
 					<div className="visualised-seats-block">
-						<div className="seat top left"></div>
-						<div className="seat top right"></div>
+						<div className={`seat top left ${seatColors[0]}`}></div>
+						<div className={`seat top right ${seatColors[1]}`}></div>
 						<div className="table"></div>
-						<div className="seat bottom left"></div>
-						<div className="seat bottom right"></div>
+						<div className={`seat bottom left ${seatColors[2]}`}></div>
+						<div className={`seat bottom right ${seatColors[3]}`}></div>
 					</div>
 					<span className="space-filler" />
 					<div className="visualised-seats-block">
-						<div className="seat top left"></div>
-						<div className="seat top right"></div>
-						<div className="table"></div>
-						<div className="seat bottom left"></div>
-						<div className="seat bottom right"></div>
+					<div className={`seat top left ${seatColors[4]}`}></div>
+					<div className={`seat top right ${seatColors[5]}`}></div>
+					<div className="table"></div>
+					<div className={`seat bottom left ${seatColors[6]}`}></div>
+					<div className={`seat bottom right ${seatColors[7]}`}></div>
 					</div>
 				</div>
 			</div>
