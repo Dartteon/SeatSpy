@@ -2,11 +2,12 @@
 
 var React = require('react');
 var axios = require('axios');
+var ReactHighcharts = require ('react-highcharts');
 
 var App = React.createClass({
 	getInitialState: function() {
     return {
-      jobs: {}
+      occupancyChart: {},
     }
   },
 
@@ -17,7 +18,7 @@ var App = React.createClass({
         .get("/seat-data-highchart")
         .then(function(result) {
           _this.setState({
-            jobs: result.data
+            occupancyChart: result.data
           });
         })
   },
@@ -27,10 +28,17 @@ var App = React.createClass({
   },
 
   render: function() {
-    console.log(this.state.jobs);
+    console.log(this.state.occupancyChart);
+		if (!this.state.occupancyChart) {
+			return (
+				<div>
+	        <div className="loading"></div>
+	      </div>
+			);
+		}
     return (
-      <div>
-        <div className="loading"></div>
+      <div className="admin-container">
+        <ReactHighcharts className="occupancy-graph" config = {this.state.occupancyChart}></ReactHighcharts>
       </div>
     )
   }
