@@ -47,6 +47,13 @@ var App = React.createClass({
 	render: function render() {
 		console.log('myState', this.state);
 		var seatColors = this.state.seats;
+		if (this.state.numFull === 0 && this.state.numEmpty === 0) {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement('div', { className: 'loading' })
+			);
+		}
 		return React.createElement(
 			'div',
 			{ className: 'app-container' },

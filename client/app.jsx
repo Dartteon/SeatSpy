@@ -38,6 +38,13 @@ var App = React.createClass({
 	render() {
 		console.log('myState', this.state);
 		const seatColors = this.state.seats;
+		if (this.state.numFull === 0 && this.state.numEmpty === 0) {
+			return (
+				<div>
+	        <div className="loading"></div>
+	      </div>
+			);
+		}
 		return (
 			<div className="app-container">
 				<div className="area-name-block">
