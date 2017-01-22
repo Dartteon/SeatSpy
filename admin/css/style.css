@@ -11,7 +11,7 @@ html {
 .loading,
 .loading:before,
 .loading:after {
-  background: #ffffff;
+  background: #fff8cf;
   -webkit-animation: load 1s infinite ease-in-out;
   animation: load 1s infinite ease-in-out;
   width: 1em;
@@ -32,7 +32,7 @@ html {
 }
 
 .loading {
-  color: #ffffff;
+  color: #fff8cf;
   text-indent: -9999em;
   margin: 88px auto;
   position: relative;
@@ -74,15 +74,20 @@ html {
 
 .admin-container {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.occupancy-graph {
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.chart-container {
+  width: 50vw;
+  height: 50vh;
+  background-color: #33526e;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.chart {
+  padding-top: 45px;
+  padding-left: 20px;
+  padding-right: 20px;
 }

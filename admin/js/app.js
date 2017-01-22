@@ -40,7 +40,15 @@ var App = React.createClass({
     return React.createElement(
       'div',
       { className: 'admin-container' },
-      React.createElement(ReactHighcharts, { className: 'occupancy-graph', config: this.state.occupancyChart })
+      React.createElement(
+        'div',
+        { className: 'chart-container' },
+        React.createElement(
+          'div',
+          { className: 'chart' },
+          React.createElement(ReactHighcharts, { config: this.state.occupancyChart })
+        )
+      )
     );
   }
 });

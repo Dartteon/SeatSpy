@@ -39,7 +39,11 @@ var App = React.createClass({
 		}
     return (
       <div className="admin-container">
-        <ReactHighcharts className="occupancy-graph" config = {this.state.occupancyChart}></ReactHighcharts>
+				<div className="chart-container">
+					<div className="chart">
+      			<ReactHighcharts config={this.state.occupancyChart}></ReactHighcharts>
+					</div>
+				</div>
       </div>
     )
   }

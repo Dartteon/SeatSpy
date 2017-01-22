@@ -2,7 +2,7 @@ var dbManager = require('./dbManager.js');
 const router = require('express').Router();
 
 var clients = [];
-var seats = [true, true, true, true, 
+var seats = [true, true, true, true,
     true, true, true, true];
 
 function initialize() {
@@ -18,7 +18,7 @@ function connectNewClient (clientInfo) {
         clients.splice(clients.indexOf(client), 1);
         console.log("Client disconnected --- TotalClients=" + clients.length);
     });
-    
+
     //Build data
     var numEmptySeats = 0;
     for (var j = 0; j < seats.length; j++) {
@@ -50,7 +50,7 @@ function updateAllClients() {
         numEmpty: numEmptySeats,
         numFull: numFullSeats
     }
-    
+
     //Send data
     for (var i = 0; i < clients.length; i++) {
         clients[i].emit('send:data', data);
@@ -106,7 +106,7 @@ function getSeatDataHighChart(request, response, next) {
     endDateTime = new Date();
     startDateTime = new Date();
     startDateTime.setDate(startDateTime.getDate()-1);
-    
+
     dbManager.getData(startDateTime, endDateTime,
         function (result) {
             var graphs = generateGraphs(result);
@@ -140,24 +140,58 @@ function generateGraphs(data) {
 function generateHighChartJson(graphs, data) {
     //Construct highchart JSON for return
     var highChartJson = {};
-    highChartJson.title = { "text": "Seat Data", y: 25, x: 0 };
+    highChartJson.title = {
+      "text": "Seat Occupancy Rate",
+      style: {
+        font: '24pt Trebuchet MS, Verdana,  sans-serif',
+        color: '#CCC'
+      }
+    };
     highChartJson.subtitle = { "text": "", y: 45};
-    highChartJson.xAxis = { "categories": "Time" };
+    highChartJson.xAxis = {
+      "categories": "Time",
+      labels: {
+        style: {
+          color: '#CCC'
+        }
+      },
+      gridLineColor: '#85d5ca'
+    };
     highChartJson.yAxis = {
         title: {
-            text: "Number"
+            text: "Number",
+            style: {
+              color: '#CCC'
+            }
+        },
+        labels: {
+          style: {
+            color: '#CCC'
+          }
         },
         plotLines: [{
             value: 0,
             width: 1,
-            color: '#808080'
+            color: '#CCC'
         }]
     }
     highChartJson.legend = {
         layout: 'horizontal',
         align: 'center',
         verticalAlign: 'bottom',
-        borderWidth: 0
+        borderWidth: 0,
+        itemStyle: {
+          color: '#CCC'
+        },
+        itemHoverStyle: {
+           color: '#CCC'
+        },
+        itemHiddenStyle: {
+           color: '#444'
+        }
+    }
+    highChartJson.chart = {
+      backgroundColor: null
     }
     highChartJson.series = graphs;
     return highChartJson;
