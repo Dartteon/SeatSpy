@@ -2,7 +2,7 @@ const CronJob = require('cron').CronJob;
 const seatManager = require('./seatManager.js');
 var moment = require('moment');
 
-var tenMinCronString = '*/1 * * * *';
+var tenMinCronString = '*/10 * * * *';
 
 function startAllCronjobs() {
   console.log("Cron job started!");

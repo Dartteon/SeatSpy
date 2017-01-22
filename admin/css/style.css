@@ -80,14 +80,14 @@ html {
 }
 
 .chart-container {
-  width: 50vw;
-  height: 50vh;
+  width: 55vw;
+  height: 55vh;
   background-color: #33526e;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .chart {
-  padding-top: 45px;
+  padding-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
 }

@@ -132,9 +132,9 @@ function generateGraphs(data) {
     }
 
     var graphs = [];
-    graphs.push({"name": "Occupied Seats", "data": numFullArray, type: 'spline'});
-    graphs.push({"name": "Empty Seats", "data": numEmptyArray, type: 'spline'});
-    graphs.push({"name": "% Seats Occupied", "data": rateArray, type: 'spline'});
+    graphs.push({"name": "Occupied Seats", "data": numFullArray, type: 'spline', color: '#C0392B'});
+    graphs.push({"name": "Empty Seats", "data": numEmptyArray, type: 'spline', color: '#2ECC71'});
+    graphs.push({"name": "% Seats Occupied", "data": rateArray, type: 'spline', color: '#F1C40F'});
     return graphs;
 }
 function generateHighChartJson(graphs, data) {
@@ -142,12 +142,12 @@ function generateHighChartJson(graphs, data) {
     var highChartJson = {};
     highChartJson.title = {
       "text": "Seat Occupancy Rate",
+      y: 25,
+      x: 0,
       style: {
-        font: '24pt Trebuchet MS, Verdana,  sans-serif',
         color: '#CCC'
       }
     };
-    highChartJson.subtitle = { "text": "", y: 45};
     highChartJson.xAxis = {
       "categories": "Time",
       labels: {
