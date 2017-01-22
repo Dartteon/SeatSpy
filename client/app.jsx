@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var socket = io.connect();
 
 var App = React.createClass({
@@ -40,7 +41,7 @@ var App = React.createClass({
 		return (
 			<div className="app-container">
 				<div className="area-name-block">
-					<div className="area-name">Koufu</div>
+					<div className="area-name">Timbre+</div>
 				</div>
 				<div className="seats-block-container">
 					<div className="seats-block empty-seats-color">
@@ -75,4 +76,4 @@ var App = React.createClass({
 	}
 });
 
-React.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('app'));

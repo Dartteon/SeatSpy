@@ -2,6 +2,7 @@ html {
   height: 100%;
   width: 100%;
   background-color: #fffff2;
+  background: radial-gradient(circle, #fff, #fff8cf);
 }
 
 #app {
@@ -19,11 +20,15 @@ html {
 .area-name-block {
   height: 10vh;
   background-color: #f1c40f;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   position: relative;
 }
 
 .area-name {
   margin: 0;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
   font-size: 4vh;
   position: absolute;
   top: 50%;
@@ -35,7 +40,6 @@ html {
   height: 45vh;
   position: relative;
   text-align: center;
-  /*border-bottom: 2px solid #000;*/
 }
 
 .seats-block {
@@ -44,6 +48,7 @@ html {
   display: inline-block;
   text-align: center;
   position: relative;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .empty-seats-color {
@@ -99,6 +104,9 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #f8da9e;
+  background-image: -webkit-linear-gradient(30deg, #fbd864 80%, #eaca5d 20%);
+  border-radius: 20px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .seat {
