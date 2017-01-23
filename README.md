@@ -1,3 +1,9 @@
+## Try It
+http://seatspy.herokuapp.com/
+To set a seat as vacant/occupied
+http://seatspy.herokuapp.com/update-solo-seat?id=<int>&empty=<bool>
+i.e http://seatspy.herokuapp.com/update-solo-seat?id=2&empty=false to make seat 2 occupied
+
 ## Inspiration
 Ever scoured a hawker center, wait by a table like a vulture for other customers to finish their food? Ever walked in circles in the library, hoping to find a vacant seat? We have, and we hated it. We built this solution to allow everyone to find vacant seats easily.
 
