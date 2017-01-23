@@ -1,3 +1,23 @@
+```
+To view in seat-finder mode
+
+http://seatspy.herokuapp.com/
+```
+```
+To set a seat (index 0 - 7) as occupied/vacant via API (for sensors, i.e Arduino/RaspPi). 
+Open the seat-finder mode in another tab, open this link and see that your seat-finder view automatically updates!
+
+http://seatspy.herokuapp.com/update-solo-seat?id=<int>&empty=<bool> 
+i.e http://seatspy.herokuapp.com/update-solo-seat?id=2&empty=false to make seat 2 occupied
+```
+```
+To view in admin mode - see the chart of seat occupancy rates over last 24 hours (sampled every 10 minutes)
+
+http://seatspy.herokuapp.com/admin
+```
+
+*Note that the website may take some time to load initially, as the heroku server sleeps occasionally.
+
 ## Inspiration
 Ever scoured a hawker center, wait by a table like a vulture for other customers to finish their food? Ever walked in circles in the library, hoping to find a vacant seat? We have, and we hated it. We built this solution to allow everyone to find vacant seats easily.
 
