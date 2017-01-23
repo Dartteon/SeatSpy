@@ -1,12 +1,12 @@
 {
   "development": {
-      "database":"mongodb://dartteon:mongolab@ds117909.mlab.com:17909/heroku_nzd07xdn",
+      "database":"",
       "port": 8143,
-      "secretKey": "oddleTracker!@#$%^&*()_+="
+      "secretKey": ""
    },
    "production": {
-      "database":"mongodb://dartteon:mongolab@ds117909.mlab.com:17909/heroku_nzd07xdn",
+      "database":"",
       "port": 8143,
-      "secretKey": "oddleTracker!@#$%^&*()_+="
+      "secretKey": ""
    }
 }
